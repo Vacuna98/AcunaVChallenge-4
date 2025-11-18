@@ -1,6 +1,8 @@
 const pageTitle = document.getElementById("page-title");
 const changeTitleBtn = document.getElementById("change-title-btn");
-const colorBtn = document.getElementById("change-bg-btn"); // matches HTML
+const titleColorBtn = document.getElementById("title-color-btn");
+
+const colorBtn = document.getElementById("change-bg-btn"); 
 const addCardBtn = document.getElementById("add-card-btn");
 const nameInput = document.getElementById("name-box");
 const addNameBtn = document.getElementById("add-name-btn");
@@ -9,6 +11,11 @@ const addLastNameBtn = document.getElementById("add-lastname-btn");
 const clearAllBtn = document.getElementById("clear-all-btn");
 const ageInput = document.getElementById("age");
 const ageBtn = document.getElementById("age-btn");
+const DOBInput = document.getElementById("DOB");
+const dobBtn = document.getElementById("dob-btn");
+const outputEmail = document.getElementById("user-email");
+const inputEmail = document.getElementById("input-email");
+const emailBtn = document.getElementById("email-btn");
 
 
 const cardContainer = document.getElementById("card-container");
@@ -22,6 +29,13 @@ changeTitleBtn.addEventListener("click", () => {
     pageTitle.innerText = "Welcome";
   }
 });
+
+titleColorBtn.addEventListener("click", () => {
+    const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    pageTitle.style.color = randomColor;
+
+});
+    
 
 // Change background color button
 colorBtn.addEventListener("click", () => {
@@ -43,10 +57,21 @@ addNameBtn.addEventListener("click", () => {
     const value = nameInput.value.trim();
     if (!value) return;
     
-    const card = createCard(value);  // <-- YES, this replaces the “create card” part
+    const card = createCard(value);  
     
     cardContainer.appendChild(card);
     nameInput.value = "";
+});
+
+//LastName Btn
+addLastNameBtn.addEventListener("click", () => {
+    const value = lastNameInput.value.trim();
+    if (!value) return;
+    
+    const card = createCard(value);  
+    
+    cardContainer.appendChild(card);
+    lastNameInput.value = "";
 });
 
 //Age Btn
@@ -54,30 +79,19 @@ ageBtn.addEventListener("click", () => {
     const value = ageInput.value.trim();
     if (!value) return;
     
-    const card = createCard(value);  // <-- YES, this replaces the “create card” part
+    const card = createCard(value);  
     
     cardContainer.appendChild(card);
     ageInput.value = "";
 });
 
-//Last Name Btn
-ageBtn.addEventListener("click", () => {
-    const value = lastNameInput.value.trim();
-    if (!value) return;
-    
-    const card = createCard(value);  // <-- YES, this replaces the “create card” part
-    
-    cardContainer.appendChild(card);
-    lastNameInput.value = "";
-});
-
 // Add card Btn
 addCardBtn.addEventListener("click", () => {
-  const card = document.createElement("div"); // create the card
+  const card = document.createElement("div"); 
   card.className = "card";
   card.innerText = "Stop Adding Cards!!!!";
 
-  cardContainer.appendChild(card); // add it to the container
+  cardContainer.appendChild(card); 
 });
 
 
@@ -85,3 +99,26 @@ addCardBtn.addEventListener("click", () => {
 clearAllBtn.addEventListener("click", () =>{
     cardContainer.innerHTML = "";
 })
+
+//DDOB Btn
+dobBtn.addEventListener("click", () => {
+    
+    const value = DOBInput.value.trim();
+    if (!value) return;
+    
+    const card = createCard(value);  
+    
+    cardContainer.appendChild(card);
+    DobInput.value = "";
+});
+
+// Email
+emailBtn.addEventListener("click", () => {
+    if(inputEmail.value.trim() === "")
+    {
+        outputEmail.innerText = "What is your email?";
+    }
+    else{
+        outputEmail.innerText = "Your email is " + inputEmail.value.trim();
+    }
+});
